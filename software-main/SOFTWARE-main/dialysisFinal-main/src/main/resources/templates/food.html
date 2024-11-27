@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1+등급 무항생제 특란 10구</title>
+    <title>무농약 국산콩 콩나물 300g</title>
     <link rel="stylesheet" href="/food.css">
 </head>
 <body>
@@ -14,18 +14,19 @@
             <a th:href="@{/main}">
                 <img src="/images/back-icon.png" alt="뒤로가기" class="back-icon">
             </a>
-            <h1>1+등급 무항생제 특란 10구</h1>
+            <h1>무농약 국산콩 콩나물 300g</h1>
             <img src="/images/cart.png" class="lounge-logo2">
         </div>
         <div class="diet-recommendation-box">
             <img src="/images/dietdate-icon.png" alt="일일 식단 아이콘" class="dietdate-icon">
             <div class="diet-date">새벽배송</div>
             <div class="food-info">
-                <img src="/images/food6.png" class="food-img">
-                <p class="food-info-text1">1+등급 무항생제 특란 10구</p>
-                <p class="food-info-text2">1+등급 달걀의 신선함</p>
-                <p class="food-info-text1">3,890원</p>
+                <img th:src="@{${product.imageUrl}}" class="food-img">
+                <p class="food-info-text1" th:text="${product.name}"></p>
+                <p class="food-info-text2" th:text="${product.description}"></p>
+                <p class="food-info-text1" th:text="${product.price} + '원'"></p>
             </div>
+
             <button class="banner2">
                 <span class="banner-text2">구매하기</span>
             </button>

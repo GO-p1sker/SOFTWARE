@@ -31,7 +31,10 @@
                         <span th:text="'이미지 로드중'"
                               th:unless="${product.imageUrl != null and product.imageUrl != ''}"
                               class="foodlist-img-text"></span>
-                        <p class="food-text1" th:text="${product.name}"></p>
+                        <a th:href="@{/product/{id}(id=${product.id})}">
+                            <p class="food-text1" th:text="${product.name}"></p>
+                        </a>
+                        <!-- 상품 가격 -->
                         <p class="food-text2" th:text="${product.price}"></p>
                     </div>
                 </div>
