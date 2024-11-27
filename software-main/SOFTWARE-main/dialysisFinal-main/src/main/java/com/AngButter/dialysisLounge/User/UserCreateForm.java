@@ -23,4 +23,10 @@ public class UserCreateForm {
         @NotEmpty(message = "이메일을 입력해주세요.")
         @Email
         private String email;
+
+        @NotEmpty(message = "전화번호를 입력해주세요.")
+        private String customerPhone;
+
+        @NotEmpty(message = "주소를 입력해주세요.")
+        private String customerAddress;
 }

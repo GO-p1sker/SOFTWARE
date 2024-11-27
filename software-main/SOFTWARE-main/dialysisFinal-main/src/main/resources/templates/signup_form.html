@@ -24,26 +24,45 @@
             <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
                 <div th:replace="~{form_errors :: formErrorsFragment}"></div>
                 <div class="login-font">
+                    <!-- Email -->
                     <div class="m-3">
                         <label for="email" class="form-label text-info">이메일</label>
-                        <input type="email" th:field="*{email}" class="form-control"
+                        <input type="email" th:field="*{email}" id="email" class="form-control"
                                style="background-color: #F4F4F4" placeholder="예) lounge@mail.com">
                     </div>
+
+                    <!-- Username -->
                     <div class="m-3">
                         <label for="username" class="form-label text-info">사용자 이름</label>
-                        <input type="text" th:field="*{username}" class="form-control"
+                        <input type="text" th:field="*{username}" id="username" class="form-control"
                                style="background-color: #F4F4F4" placeholder="사용자 이름을 입력하세요.">
                     </div>
+
+                    <!-- Password -->
                     <div class="m-3">
                         <label for="password1" class="form-label text-info">비밀번호</label>
-                        <input type="password" th:field="*{password1}" class="form-control"
+                        <input type="password" th:field="*{password1}" id="password1" class="form-control"
                                style="background-color: #F4F4F4" placeholder="비밀번호를 입력하세요. (10자 이상)">
-                        <input type="password" th:field="*{password2}" class="form-control mt-3"
+                        <input type="password" th:field="*{password2}" id="password2" class="form-control mt-3"
                                style="background-color: #F4F4F4" placeholder="위와 동일한 비밀번호를 입력하세요.">
+                    </div>
+
+                    <!-- Customer Phone -->
+                    <div class="m-3">
+                        <label for="customerPhone" class="form-label text-info">전화번호</label>
+                        <input type="text" th:field="*{customerPhone}" id="customerPhone" class="form-control"
+                               style="background-color: #F4F4F4" placeholder="전화번호를 입력하세요.">
+                    </div>
+
+                    <!-- Customer Address -->
+                    <div class="m-3">
+                        <label for="customerAddress" class="form-label text-info">주소</label>
+                        <input type="text" th:field="*{customerAddress}" id="customerAddress" class="form-control"
+                               style="background-color: #F4F4F4" placeholder="주소를 입력하세요.">
                     </div>
                 </div>
                 <div class="d-grid gap-2 m-3">
-                <button type="submit" class="btn btn-primary py-2 mt-3" id="button">회원가입</button>
+                    <button type="submit" class="btn btn-primary py-2 mt-3" id="button">회원가입</button>
                 </div>
             </form>
         </div>
@@ -52,7 +71,7 @@
 <script th:src="@{/bootstrap.min.js}"></script>
 </body>
 <script>
-    //버튼 이벤트 발생
+    // 버튼 이벤트 발생
     document.getElementById("button").addEventListener("focus", () => {
         document.getElementById("button").style.backgroundColor = "#00B2FF";
         document.getElementById("button").innerText = "환영합니다!";
@@ -62,7 +81,7 @@
         document.getElementById("button").innerText = "회원가입";
     });
 
-    //username 이벤트 발생
+    // username 이벤트 발생
     document.getElementById("username").addEventListener("focus", () => {
         document.getElementById("username").style.backgroundColor = "#E6F7FF";
     });
@@ -70,7 +89,7 @@
         document.getElementById("username").style.backgroundColor = "#F4F4F4";
     });
 
-    //password1 이벤트 발생
+    // password1 이벤트 발생
     document.getElementById("password1").addEventListener("focus", () => {
         document.getElementById("password1").style.backgroundColor = "#E6F7FF";
     });
@@ -78,7 +97,7 @@
         document.getElementById("password1").style.backgroundColor = "#F4F4F4";
     });
 
-    //password2 이벤트 발생
+    // password2 이벤트 발생
     document.getElementById("password2").addEventListener("focus", () => {
         document.getElementById("password2").style.backgroundColor = "#E6F7FF";
     });
@@ -86,7 +105,7 @@
         document.getElementById("password2").style.backgroundColor = "#F4F4F4";
     });
 
-    //email 이벤트 발생
+    // email 이벤트 발생
     document.getElementById("email").addEventListener("focus", () => {
         document.getElementById("email").style.backgroundColor = "#E6F7FF";
     });
@@ -94,7 +113,20 @@
         document.getElementById("email").style.backgroundColor = "#F4F4F4";
     });
 
+    // customerPhone 이벤트 발생
+    document.getElementById("customerPhone").addEventListener("focus", () => {
+        document.getElementById("customerPhone").style.backgroundColor = "#E6F7FF";
+    });
+    document.getElementById("customerPhone").addEventListener("blur", () => {
+        document.getElementById("customerPhone").style.backgroundColor = "#F4F4F4";
+    });
 
-
+    // customerAddress 이벤트 발생
+    document.getElementById("customerAddress").addEventListener("focus", () => {
+        document.getElementById("customerAddress").style.backgroundColor = "#E6F7FF";
+    });
+    document.getElementById("customerAddress").addEventListener("blur", () => {
+        document.getElementById("customerAddress").style.backgroundColor = "#F4F4F4";
+    });
 </script>
 </html>
