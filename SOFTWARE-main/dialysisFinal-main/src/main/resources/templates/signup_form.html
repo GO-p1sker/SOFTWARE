@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/community-signup.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <div class="left-icons">
+                <a th:href="@{/question/list}">
+                    <img src="/images/back-icon.png" alt="뒤로가기" class="back-icon">
+                </a>
+            </div>
+            <h1>회원가입</h1>
+            <div class="right-space"></div>
+        </div>
+        <div class="content">
+            <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+                <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+                <div class="login-font">
+                    <div class="m-3">
+                        <label for="email" class="form-label text-info">이메일</label>
+                        <input type="email" th:field="*{email}" class="form-control"
+                               style="background-color: #F4F4F4" placeholder="예) lounge@mail.com">
+                    </div>
+                    <div class="m-3">
+                        <label for="username" class="form-label text-info">사용자 이름</label>
+                        <input type="text" th:field="*{username}" class="form-control"
+                               style="background-color: #F4F4F4" placeholder="사용자 이름을 입력하세요.">
+                    </div>
+                    <div class="m-3">
+                        <label for="password1" class="form-label text-info">비밀번호</label>
+                        <input type="password" th:field="*{password1}" class="form-control"
+                               style="background-color: #F4F4F4" placeholder="비밀번호를 입력하세요. (10자 이상)">
+                        <input type="password" th:field="*{password2}" class="form-control mt-3"
+                               style="background-color: #F4F4F4" placeholder="위와 동일한 비밀번호를 입력하세요.">
+                    </div>
+                </div>
+                <div class="d-grid gap-2 m-3">
+                <button type="submit" class="btn btn-primary py-2 mt-3" id="button">회원가입</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/bootstrap.min.js}"></script>
+</body>
+<script>
+    //버튼 이벤트 발생
+    document.getElementById("button").addEventListener("focus", () => {
+        document.getElementById("button").style.backgroundColor = "#00B2FF";
+        document.getElementById("button").innerText = "환영합니다!";
+    });
+    document.getElementById("button").addEventListener("blur", () => {
+        document.getElementById("button").style.backgroundColor = "#00B2FF";
+        document.getElementById("button").innerText = "회원가입";
+    });
+
+    //username 이벤트 발생
+    document.getElementById("username").addEventListener("focus", () => {
+        document.getElementById("username").style.backgroundColor = "#E6F7FF";
+    });
+    document.getElementById("username").addEventListener("blur", () => {
+        document.getElementById("username").style.backgroundColor = "#F4F4F4";
+    });
+
+    //password1 이벤트 발생
+    document.getElementById("password1").addEventListener("focus", () => {
+        document.getElementById("password1").style.backgroundColor = "#E6F7FF";
+    });
+    document.getElementById("password1").addEventListener("blur", () => {
+        document.getElementById("password1").style.backgroundColor = "#F4F4F4";
+    });
+
+    //password2 이벤트 발생
+    document.getElementById("password2").addEventListener("focus", () => {
+        document.getElementById("password2").style.backgroundColor = "#E6F7FF";
+    });
+    document.getElementById("password2").addEventListener("blur", () => {
+        document.getElementById("password2").style.backgroundColor = "#F4F4F4";
+    });
+
+    //email 이벤트 발생
+    document.getElementById("email").addEventListener("focus", () => {
+        document.getElementById("email").style.backgroundColor = "#E6F7FF";
+    });
+    document.getElementById("email").addEventListener("blur", () => {
+        document.getElementById("email").style.backgroundColor = "#F4F4F4";
+    });
+
+
+
+</script>
+</html>

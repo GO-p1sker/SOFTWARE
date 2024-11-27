@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투석라운지</title>
+    <link rel="stylesheet" href="/mainhome.css">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="header">
+            <div class="lounge-logo">
+                <img src="/images/lounge-logo.png" alt="로고">
+            </div>
+            <div class="lounge-logo2">
+                <img src="/images/lounge-logo2.png" alt="로고2">
+            </div>
+        </div>
+
+        <!-- 버튼 추가 부분 -->
+        <div class="button-container">
+            <a href="/go-to-url">
+                <button>이동하기</button>
+            </a>
+        </div>
+
+        <div class="footer-nav">
+            <ul>
+                <li class="nav-item1">
+                    <a th:href="@{/user/login}"><img src="/images/home-login.png" alt="로그인 아이콘">로그인</a>
+                </li>
+                <li class="nav-item2">
+                    <a th:href="@{/user/signup}"><img src="/images/sign-up.png" alt="회원가입 아이콘">회원가입</a>
+                </li>
+                <li class="nav-item3">
+                    <a th:href="@{/question/list}"><img src="/images/community-icon.png" alt="커뮤니티 아이콘">커뮤니티</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

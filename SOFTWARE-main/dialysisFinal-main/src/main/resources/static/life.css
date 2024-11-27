@@ -1,0 +1,221 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EDF2F5;
+}
+
+.mobile-container {
+    width: 462px;
+    max-width: 462px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.top-bar {
+    width: 462px;
+    max-width: 462px;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background: white;
+    z-index: 1000;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.right-space {
+    width: 25px;
+}
+
+.top-bar h1 {
+    font-size: 26px;
+    color: #00b2ff;
+    position: absolute;
+    left: 49%;
+    transform: translateX(-50%);
+
+}
+
+.top-bar img {
+    height: 25px;
+}
+
+.back-icon {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.backhome-icon {
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.image {
+    width: 462px;
+    height: 250px;
+    margin-top: 140px;
+}
+
+.lounge-data {
+    width: 420px;
+    height: 56px;
+    background: url("images/lounge-data.png") center center/cover no-repeat;
+    border-radius: 15px;
+    position: relative;
+    margin: 20px 20px 0px 20px;
+    overflow: hidden;
+}
+
+.lounge-data-largetext {
+    color: #00b2ff;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    position: absolute;
+    top: 20px;
+    left: 19px;
+    text-align: left;
+}
+
+.lounge-data-smalltext {
+    color: #444B5A;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    position: absolute;
+    top: 23px;
+    left: 150px;
+    text-align: left;
+}
+
+.content-box {
+    padding-bottom: 80px;
+}
+
+.content {
+    padding: 0px 20px 20px 20px;
+}
+
+.content-header1, .content-header2, .content-header3, .content-header4, .content-header5, .content-header6, .content-header7, .content-header8 {
+    display: flex;
+    align-items: center;
+}
+
+.exercise-icon{
+    width: 22px;
+    height: 22px;
+    margin-right: 13px;
+}
+
+.content-header1 h2 {
+    color: #EE7DA4;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-header2 h2 {
+    color: #ED8666;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-header3 h2 {
+    color: #4F92F5;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-header4 h2 {
+    color: #F8D37C;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-header5 h2 {
+    color: #EE7B5D;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-header6 h2 {
+    color: #EE7DA4;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-header7 h2 {
+    color: #8ACB8B;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-header8 h2 {
+    color: #A4C5EF;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content-text{
+    color: #636363;
+    font-size: 13px;
+    font-weight: 400;
+    display: block;
+    padding-left: 36px;
+    line-height: 1.6;
+}
+
+@media (max-width: 462px) {
+    .top-bar {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+
+    .top-bar h1 {
+        font-size: 20px;
+    }
+
+    .top-bar img {
+        height: 28px;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+    .lounge-data {
+        width: 365px;
+    }
+
+    .lounge-data-smalltext {
+        font-size: 14px;
+    }
+
+    .content-header1 h2, .content-header2 h2, .content-header3 h2, .content-header4 h2, .content-header5 h2, .content-header6 h2, .content-header7 h2, .content-header8 h2 {
+        font-size: 18px;
+    }
+
+    .content-text {
+        width: 325px;
+    }
+}

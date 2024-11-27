@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>식단 관리</title>
+    <link rel="stylesheet" href="/diet.css">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <a th:href="@{/main}">
+                <img src="/images/back-icon.png" alt="뒤로가기" class="back-icon">
+            </a>
+            <h1>식단 관리</h1>
+            <img src="/images/cart.png" class="lounge-logo2">
+        </div>
+        <button class="banner" onclick="window.location.href='/service/magazine'">
+            <img src="/images/dietedu-icon.png" alt="교육자료 아이콘" class="dietedu-icon">
+            <span class="banner-text">건강 레시피에 필요한 신선한 재료 구매 바로가기!</span>
+        </button>
+        <div class="diet-recipe-box">
+            <img src="/images/dietrec-icon.png" alt="레시피 아이콘" class="dietrec-icon">
+            <div class="recipe-count">6개의 레시피</div>
+            <div class="recipe-info">
+                <h2 class="recipe-title">건강 레시피</h2>
+                <button class="recipe-button" onclick="window.location.href='/service/diet/recipe'">신선 코너</button>
+                <p class="recipe-text1">건강한 식단, 어떻게 준비해야 할까요?</p>
+                <div class="recipe-box2">
+                    <p class="recipe-text2"><b>최적</b>의 조리법 알아보기!🍚🍴</p>
+                </div>
+            </div>
+        </div>
+        <div class="diet-recommendation-box">
+            <img src="/images/dietdate-icon.png" alt="일일 식단 아이콘" class="dietdate-icon">
+            <div class="diet-date" id="date-container"></div>
+            <div class="diet-info">
+                <h2 class="diet-title">일일 식단 추천</h2>
+                <p class="diet-text1">건강을 위한 식사관리, 전문적인 영양 설계로 추천해드릴게요.</p>
+                <div class="diet-time">아침 식사</div>
+                <div class="diet-images">
+                    <div class="diet-item">
+                        <img src="/images/diet-img1.png" alt="저지방 우유 한 잔" class="diet-img">
+                        <p class="diet-text2">저지방우유 한 잔</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img2.png" alt="달걀 흰자 오믈렛" class="diet-img">
+                        <p class="diet-text2">달걀 흰자 오믈렛</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img3.png" alt="흰 빵 한 조각" class="diet-img">
+                        <p class="diet-text2">흰 빵 한 조각</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img4.png" alt="사과 반쪽" class="diet-img">
+                        <p class="diet-text2">사과 반쪽</p>
+                    </div>
+                </div>
+                <div class="diet-time">점심 식사</div>
+                <div class="diet-images">
+                    <div class="diet-item">
+                        <img src="/images/diet-img5.png" alt="구운 닭가슴살" class="diet-img">
+                        <p class="diet-text2">구운 닭가슴살</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img6.png" alt="브로콜리 스팀" class="diet-img">
+                        <p class="diet-text2">브로콜리 스팀</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img7.png" alt="흰 쌀밥 한 공기" class="diet-img">
+                        <p class="diet-text2">흰 쌀밥 한 공기</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img8.png" alt="베리 샐러드" class="diet-img">
+                        <p class="diet-text2">베리 샐러드</p>
+                    </div>
+                </div>
+                <div class="diet-time">저녁 식사</div>
+                <div class="diet-images">
+                    <div class="diet-item">
+                        <img src="/images/diet-img9.png" alt="저염 두부계란국" class="diet-img">
+                        <p class="diet-text2">저염 두부계란국</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img10.png" alt="야채계란볶음밥" class="diet-img">
+                        <p class="diet-text2">야채계란볶음밥</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img11.png" alt="생선구이" class="diet-img">
+                        <p class="diet-text2">생선구이</p>
+                    </div>
+                    <div class="diet-item">
+                        <img src="/images/diet-img12.png" alt="녹색 채소 샐러드" class="diet-img">
+                        <p class="diet-text2">녹색 채소 샐러드</p>
+                    </div>
+                </div>
+                <div class="banner2">
+                    <span class="banner-text2">내일의 일일식단도 기대해주세요!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 현재 날짜 객체 생성
+    var today = new Date();
+
+    // 연도, 월, 일 추출 및 형식화
+    var year = today.getFullYear();
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+
+    // 형식화된 날짜 문자열 생성
+    var dateString = year + '.' + month + '.' + day;
+
+    // 날짜 문자열을 HTML의 <div> 요소에 표시
+    document.getElementById('date-container').innerHTML = dateString;
+</script>
+</body>
+</html>
