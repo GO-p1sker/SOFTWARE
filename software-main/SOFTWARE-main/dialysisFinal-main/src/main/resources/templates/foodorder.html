@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문서</title>
+    <link rel="stylesheet" href="/food.css">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <a th:href="@{/main}">
+                <img src="/images/back-icon.png" class="back-icon">
+            </a>
+            <h1>주문서</h1>
+            <img src="/images/cart.png" class="lounge-logo2">
+        </div>
+        <div class="diet-recommendation-box">
+            <div class="food-order">
+                <p class="food-order-text1">주문상품</p>
+                <p class="food-order-text2">무농약 국산콩 콩나물 300g<br><br><br></p>
+                <p class="food-order-text1">주문자 정보</p>
+                <p class="food-order-text2">김소연<br>010-4315-0722<br>경기 성남시 수정구 양지동 212<br><br><br></p>
+                <p class="food-order-text1">결제수단</p>
+                <div class="ingredient-boxes">
+                    <button class="ingredient-box">신용카드</button>
+                    <button class="ingredient-box">간편 결제</button>
+                    <button class="ingredient-box">휴대폰 결제</button>
+                </div>
+                <p class="food-order-text1"> <br><br><br></p>
+                <p class="food-order-text1">결제금액</p>
+                <p class="food-order-text1">1,490원</p>
+            </div>
+            <button class="banner2">
+                <span class="banner-text2">결제하기</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

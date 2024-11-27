@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<!--    스프링이 제공하는 부모 레이아웃이다.-->
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티</title>
+    <!-- 게시판 CSS1 -->
+    <link rel="stylesheet" href="/community-list.css">
+    <!-- 게시판 CSS2 -->
+    <link rel="stylesheet" href="/community-detail.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <div class="left-icons">
+                <a th:href="@{/main}">
+                    <img src="/images/back-icon.png" alt="뒤로가기" class="back-icon">
+                </a>
+                <a th:href="@{/main}">
+                    <img src="/images/backhome-icon.png" alt="홈" class="backhome-icon">
+                </a>
+            </div>
+            <h1>커뮤니티</h1>
+            <div class="right-space"></div>
+        </div>
+        <div class="content">
+        <nav th:replace="~{navbar :: navbarFragment}"></nav>
+        <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+        <th:block layout:fragment="content"></th:block>
+        <!-- 기본 템플릿 안에 삽입될 내용 End -->
+        <!-- Bootstrap JS -->
+        <script th:src="@{/bootstrap.min.js}"></script>
+        </div>
+    </div>
+</div>
+</body>
+</html>
