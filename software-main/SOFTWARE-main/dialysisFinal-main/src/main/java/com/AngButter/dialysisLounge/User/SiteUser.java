@@ -20,7 +20,9 @@ public class SiteUser {
     @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
     private String customerPhone;
 
+    @Column(unique = true)
     private String customerAddress;
 }

@@ -65,8 +65,13 @@ public class OrderController {
         );
 
         model.addAttribute("order", order);
-        return "order-end"; // 주문 성공 페이지로 이동 (HTML 파일명에서 .html은 생략 가능)
+        return "order-end.html"; // 주문 성공 페이지로 이동 (HTML 파일명에서 .html은 생략 가능)
     }
-
+    @GetMapping("/ingredients")
+    public String ingredientsPage(Model model) {
+        // 상품 목록을 데이터베이스에서 가져옵니다.
+        model.addAttribute("products", productRepository.findAll());
+        return "foodlist.html"; // `ingredients.html`로 이동
+    }
 
 }

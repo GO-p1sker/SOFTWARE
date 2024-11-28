@@ -24,4 +24,6 @@ public class ProductController {
         return "food"; // food.html을 렌더링
     }
 
+
+
 }

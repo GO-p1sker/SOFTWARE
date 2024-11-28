@@ -26,6 +26,13 @@
                 <p><strong>결제금액:</strong> <span th:text="${order.totalPrice} + '원'"></span></p>
                 <p><strong>결제수단:</strong> <span th:text="${order.paymentMethod}"></span></p>
             </div>
+
+            <!-- 주문 완료 버튼 -->
+            <div class="order-complete-button">
+                <button class="banner2" onclick="window.location.href='/ingredients'">
+                    <span class="banner-text2">주문 완료</span>
+                </button>
+            </div>
         </div>
     </div>
 </body>
