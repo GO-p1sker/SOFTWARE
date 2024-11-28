@@ -28,8 +28,9 @@
             </div>
 
             <button class="banner2">
-                <span class="banner-text2">구매하기</span>
+                <a th:href="@{/order/create(productId=${product.id})}" class="banner-text2">구매하기</a>
             </button>
+
         </div>
     </div>
 </body>
