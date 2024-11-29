@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문완료</title>
+    <link rel="stylesheet" href="/food.css">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <a th:href="@{/main}">
+                <img src="/images/back-icon.png" class="back-icon">
+            </a>
+            <h1>주문완료</h1>
+            <img src="/images/cart.png" class="lounge-logo2">
+        </div>
+        <div class="diet-recommendation-box">
+            <img src="/images/check.png" class="check-img">
+            <p class="order-text">주문이 완료되었습니다!</p><br><br>
+
+            <!-- 주문 내역 -->
+            <div class="order-summary">
+                <p><strong>주문상품:</strong> <span th:text="${order.product.name}"></span></p>
+                <p><strong>결제금액:</strong> <span th:text="${order.totalPrice} + '원'"></span></p>
+                <p><strong>결제수단:</strong> <span th:text="${order.paymentMethod}"></span></p>
+            </div>
+
+            <!-- 주문 완료 버튼 -->
+            <div class="order-complete-button">
+                <button class="banner2" onclick="window.location.href='/ingredients'">
+                    <span class="banner-text2">주문완료</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

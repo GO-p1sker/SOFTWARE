@@ -1,0 +1,345 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EDF2F5;
+}
+
+.mobile-container {
+    width: 462px;
+    max-width: 462px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.top-bar {
+    width: 462px;
+    max-width: 462px;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background: white;
+    z-index: 1000;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.top-bar h1 {
+    font-size: 22px;
+    color: #5E5E5E;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.top-bar img {
+    height: 32px;
+}
+
+.back-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.lounge-logo2 {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.diet-recommendation-box {
+    width: 420px;
+    height: auto;
+    border: 1px solid #DFDFDF;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 120px 20px 20px 20px;
+    position: relative;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.dietrec-icon, .dietdate-icon {
+    position: absolute;
+    left: 20px;
+    width: 22px;
+    height: 22px;
+}
+
+.recipe-count, .diet-date {
+    display: inline-block;
+    background-color: #FFE8C6;
+    border-radius: 20px;
+    padding: 4px 11px;
+    font-size: 15px;
+    font-weight: 550;
+    color: #F18657;
+    margin-left: 35px;
+}
+
+.diet-title {
+    font-size: 20px;
+    color: black;
+    margin: 10px 0;
+}
+
+.recipe-box2 {
+    width: 370px;
+    height: 53px;
+    background-color: #F8FAFB;
+}
+
+.food-info{
+    width: 360px;
+    margin: 20px 20px 20px 5px;
+}
+
+.food-img{
+    width: 300px;
+    height: 360px;
+}
+
+.food-images {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+.foodlist {
+    width: calc(50% - 15px);
+    margin: 0 7.5px 20px 7.5px;
+    box-sizing: border-box; /* 여백 포함한 크기 계산 */
+    cursor: pointer;
+}
+
+.foodlist-img {
+    width: 174px;
+    height: 221px;
+}
+
+.foodlist a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상을 그대로 따름 */
+}
+
+.foodlist a:hover {
+    text-decoration: none; /* 링크에 마우스를 올릴 때도 밑줄 제거 */
+    color: #F18657; /* (선택 사항) 호버 시 색상 변경 */
+}
+
+
+.food-info-text1{
+    font-size: 18px;
+    color: #000000;
+    margin: 10px 0px 5px 0px;
+    font-weight: 550;
+}
+
+.food-info-text2{
+    font-size: 14px;
+    color: #919191;
+    margin: 5px 0px 5px 0px;
+    font-weight: 550;
+}
+
+.food-order-text1{
+    font-size: 18px;
+    color: #000000;
+    margin: 10px 0px 5px 0px;
+    font-weight: 550;
+}
+
+.food-order-text2{
+    font-size: 17px;
+    color: #919191;
+    margin: 5px 0px 5px 0px;
+    font-weight: 550;
+}
+
+.food-text1 {
+    font-size: 15px;
+    font-weight: 550;
+    color: #919191;
+    margin: 5px 0px 5px 0px;
+}
+
+.food-text2 {
+    font-size: 15px;
+    font-weight: 550;
+    color: #5A5A5A;
+    margin-top: 2px;
+}
+
+.check-img{
+    width: 70px;
+    height: 70px;
+    display: block; /* 블록 요소로 설정하여 margin 자동 조정 가능 */
+    margin: 20px auto;
+}
+
+.order-text{
+    font-size: 18px;
+    color: #000000;
+    margin: 10px 0px 20px 0px;
+    font-weight: 550;
+    text-align: center;
+}
+
+.ingredient-boxes {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
+button.ingredient-box {
+    background-color: #FFE8C6;
+    padding: 9px;
+    border-radius: 7px;
+    font-size: 14px;
+    color: #6E6D6D;
+    font-weight: 450;
+    display: inline-block;
+    margin: 2px 0;
+    cursor: pointer;
+    border: none;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+button.banner2 {
+    width: 369px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F18657;
+    margin: 20px 0px 0px 5px;
+    border-radius: 10px;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.banner2 a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: #ffffff; /* 텍스트 색상을 흰색으로 고정 */
+    font-weight: 600;
+    font-size: 15px;
+    display: block; /* 클릭 영역 확장 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    width: 100%; /* 부모 요소 크기만큼 확장 */
+    height: 100%;
+    line-height: 56px; /* 버튼 높이에 맞게 텍스트 수직 정렬 */
+}
+
+.banner2 a:hover {
+    color: #fdfdfd; /* 호버 시에도 텍스트 색상 유지 */
+}
+
+.banner-text2 {
+    font-weight: 600;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+}
+
+
+@media (max-width: 462px) {
+    .top-bar {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+
+    .top-bar h1 {
+        font-size: 20px;
+    }
+
+    .top-bar img {
+        height: 28px;
+    }
+
+    button.banner {
+        width: 365px;
+    }
+
+    .diet-recipe-box, .diet-recommendation-box {
+        width: 365px;
+    }
+
+    .recipe-title, .diet-title {
+        font-size: 19px;
+    }
+
+    .recipe-text1, .diet-text1 {
+        font-size: 13px;
+    }
+
+    .recipe-text2 {
+        font-size: 13px;
+        bottom: 15px;
+    }
+
+    .recipe-button {
+        position: absolute;
+        top: 64px;
+        left: 278px;
+        background-color: #F18657;
+        color: white;
+        font-size: 13px;
+        border: none;
+        border-radius: 20px;
+        padding: 6px 10px;
+        cursor: pointer;
+        font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    }
+
+    .recipe-text {
+        width: 365px;
+    }
+
+    .banner2 {
+        width: 335px;
+        margin: 20px 0px 0px 0px;
+    }
+
+    .content-text{
+        width: 325px;
+    }
+
+    .content-color-text{
+        width: 325px;
+    }
+
+    .diet-item {
+        margin-right: 19px;
+        text-align: center;
+    }
+
+    .diet-img {
+        width: 70px;
+        height: 70px;
+    }
+}
