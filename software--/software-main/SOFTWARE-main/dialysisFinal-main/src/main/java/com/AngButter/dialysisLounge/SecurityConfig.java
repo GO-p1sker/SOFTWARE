@@ -21,21 +21,27 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
-                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-                .csrf((csrf) -> csrf
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
+                        // 메인화면, 로그인, 로그아웃 경로 허용
+                        .requestMatchers("/static/**", "/**.css", "/**.js", "/**.png", "/images/**", "/**.jpeg").permitAll()
+                        .requestMatchers("/user/login", "/user/logout", "/main", "/user/signup").permitAll()
+                        // 그 외 모든 요청 인증 필요
+                        .anyRequest().authenticated())
+                .csrf((csrf) -> csrf.disable())
                 .headers((headers) -> headers
                         .addHeaderWriter(new XFrameOptionsHeaderWriter(
                                 XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
-                //로그인 설정 담당 기능
+                // 로그인 설정
                 .formLogin((formLogin) -> formLogin
-                        .loginPage("/user/login") //로그인 폼 url
-                        .defaultSuccessUrl("/main")) //로그인 성공시 이동할 url
-                //로그아웃 설정 담당
+                        .loginPage("/user/login") // 로그인 폼 URL
+                        .successHandler((request, response, authentication) -> {
+                            response.sendRedirect("/main"); // 로그인 성공 시 /main으로 리다이렉트
+                        })
+                        .permitAll())
+                // 로그아웃 설정
                 .logout((logout) -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) //로그아웃 url
-                        .logoutSuccessUrl("/main") //로그아웃 시 이동 url
-                        .invalidateHttpSession(true)) // 사용된 사용자 세션 삭제
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) // 로그아웃 URL
+                        .logoutSuccessUrl("/main") // 로그아웃 성공 시 이동 URL
+                        .invalidateHttpSession(true)) // 사용자 세션 삭제
         ;
         return http.build();
     }
@@ -46,7 +52,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    //시큐리티의 인증을 처리하는 빈. UserSecurityService, PasswordEncoder 내부적 사용하여 권한, 인증 프로세스 처리
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
