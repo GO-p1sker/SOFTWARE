@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티</title>
+    <link rel="stylesheet" href="/community-list.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <div class="left-icons">
+                <a th:href="@{/main}">
+                    <img src="/images/back-icon2.png" alt="뒤로가기" class="back-icon">
+                </a>
+                <a th:href="@{/main}">
+                    <img src="/images/backhome-icon2.png" alt="홈" class="backhome-icon">
+                </a>
+            </div>
+            <h1>커뮤니티</h1>
+            <div class="right-space"></div>
+        </div>
+        <div class="content">
+            <!--            메뉴바 부분 start 삭제시 메뉴바 안보이고 마지막 버튼 class 추가한거 빼기 -->
+            <ul class="nav m-2">
+                <li class="nav-item">
+                    <a class="nav-link text-info rounded-pill border border-info py-1 mx-3 nav-font" style="background-color: #E6F7FF"
+                       sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+                    <a class="nav-link text-info rounded-pill border border-info py-1 mx-3 nav-font" style="background-color: #E6F7FF"
+                       sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info rounded-pill border border-info py-1 nav-font" style="background-color: #E6F7FF"
+                       th:href="@{/user/signup}">회원가입</a>
+                </li>
+            </ul>
+            <div class="kw-input mt-3">
+                <!-- 검색 텍스트창-->
+                <input type="text" id="search_kw" class="form-control rounded-pill my-2" th:value="${kw}"
+                       style="background-color: white" placeholder="찾으시는 내용이 있나요?">
+                <!-- 검색창 end-->
+            </div>
+            <!--            메뉴바 부분 End -->
+            <table class="table">
+                <thead class="table-light">
+                </thead>
+                <tbody>
+                <tr th:each="question, loop : ${paging}">
+                    <td>
+                        <div class="post-container">
+                            <div class="post-count">
+                                <span th:text="'게시글 ' + (${paging.getTotalElements - (paging.number * paging.size) - loop.index})"></span>
+                            </div>
+                            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"
+                               class="post-title"></a>
+                            <div class="post-flex">
+                                <span th:if="${question.author != null}" th:text="${question.author.username}"
+                                      class="post-author"></span>
+                                <span th:text="${#temporals.format(question.createDate, 'yyyy.MM.dd HH:mm')}"
+                                      class="post-date"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:if="${!paging.isEmpty()}">
+                <div class="pagination-container">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                            <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">
+                                <span>이전</span>
+                            </a>
+                        </li>
+                        <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                            th:if="${page >= paging.number-1 and page <= paging.number+1}"
+                            th:classappend="${page == paging.number} ? 'active'"
+                            class="page-item">
+                            <a th:text="${page}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
+                        </li>
+                        <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                            <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}">
+                                <span>다음</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--                    css 수정 -->
+                    <!--                    <a th:href="@{/question/create}" class="write-btn"></a>-->
+                    <!-- 메뉴바 추가시 위에 버튼 빼고 활성화-->
+                    <!--                    <div>-->
+                    <!--                        <a th:href="@{/question/create}" class="write-btn"></a>-->
+                    <!--                    </div>-->
+                </div>
+                <!--                키워드와 page를 get방식으로 요청-->
+                <form th:action="@{/question/list}" method="get" id="searchForm">
+                    <input type="hidden" id="kw" name="kw" th:value="${kw}">
+                    <input type="hidden" id="page" name="page" th:value="${paging.number}">
+                </form>
+            </div>
+        </div>
+        <a th:href="@{/question/create}" class="write-btn"></a>
+    </div>
+</div>
+<script th:src="@{/bootstrap.min.js}"></script>
+<script>
+    const page_elements = document.getElementsByClassName("page-link");
+    Array.from(page_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            document.getElementById('page').value = this.dataset.page;
+            document.getElementById('searchForm').submit();
+        });
+    });
+    // const btn_search = document.getElementById("btn_search");
+    // btn_search.addEventListener('click', function() {
+    //     document.getElementById('kw').value = document.getElementById('search_kw').value;
+    //     document.getElementById('page').value = 0;  // 검색버튼을 클릭할 경우 0페이지부터 조회한다.
+    //     document.getElementById('searchForm').submit();
+    // });
+
+    // 검색 입력 필드와 검색 폼을 가져옵니다.
+    const searchInput = document.getElementById('search_kw');
+    const searchForm = document.getElementById('searchForm');
+
+    // 입력 필드에 'keydown' 이벤트 리스너를 추가합니다.
+    searchInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {  // 'Enter' 키가 눌렸는지 확인합니다.
+            event.preventDefault(); // 기본 동작(폼 제출 등)을 막습니다.
+
+            // 검색어와 페이지 번호를 설정합니다.
+            document.getElementById('kw').value = searchInput.value;
+            document.getElementById('page').value = 0;  // 0페이지부터 조회
+
+            // 폼을 제출합니다.
+            searchForm.submit();
+        }
+    });
+
+    // 검색창 이벤트 발생
+    document.getElementById("search_kw").addEventListener("focus", () => {
+        document.getElementById("search_kw").style.backgroundColor = "#E6F7FF";
+    });
+    document.getElementById("search_kw").addEventListener("blur", () => {
+        document.getElementById("search_kw").style.backgroundColor = "#FFFFFF";
+    });
+
+</script>
+</body>
+</html>
