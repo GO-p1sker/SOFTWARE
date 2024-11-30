@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재료 구매</title>
+    <link rel="stylesheet" href="/food.css">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <a th:href="@{/main}">
+                <img src="/images/back-icon.png" class="back-icon">
+            </a>
+            <h1>재료 구매</h1>
+            <img src="/images/cart.png" class="lounge-logo2">
+        </div>
+        <div class="diet-recommendation-box">
+            <img src="/images/dietdate-icon.png" class="dietdate-icon">
+            <div class="diet-date">베스트</div>
+            <div class="diet-info">
+                <h2 class="diet-title">신선 코너</h2>
+                <div class="food-images">
+                    <div class="foodlist" th:each="product : ${products}">
+                        <!-- 이미지가 있는 경우 이미지를 표시, 없으면 텍스트를 표시 -->
+                        <img th:src="@{${product.imageUrl}}"
+                             th:alt="'이미지 로드중'"
+                             class="foodlist-img"
+                             th:if="${product.imageUrl != null and product.imageUrl != ''}" />
+                        <span th:text="'이미지 로드중'"
+                              th:unless="${product.imageUrl != null and product.imageUrl != ''}"
+                              class="foodlist-img-text"></span>
+                        <a th:href="@{/product/{id}(id=${product.id})}">
+                            <p class="food-text1" th:text="${product.name}"></p>
+                        </a>
+                        <!-- 상품 가격 -->
+                        <p class="food-text2" th:text="${product.price}+ '원'"></p>
+                    </div>
+                </div>
+            </div>
+            <button class="banner2">
+                <span class="banner-text2">더보기</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티</title>
+    <link rel="stylesheet" href="/community-detail.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <div class="left-icons">
+                <a th:href="@{/question/list}">
+                    <img src="/images/back-icon2.png" alt="뒤로가기" class="back-icon">
+                </a>
+                <a th:href="@{/main}">
+                    <img src="/images/backhome-icon2.png" alt="홈" class="backhome-icon">
+                </a>
+            </div>
+            <h1>커뮤니티</h1>
+            <div class="right-space"></div>
+        </div>
+        <div class="content">
+            <!--질문 card 시작-->
+            <div class="question-box">
+                <div class="author">
+                    <div th:if="${question.author != null}" th:text="${question.author.username}"></div>
+                </div>
+                <h2 class="title-text" th:text="${question.subject}"></h2>
+                <div class="q-card">
+                    <div class="q-card-body">
+                        <div th:if="${question.modifyDate != null}">
+                            <!--수정 일시 추가-->
+                            <div class="modify-text">
+                                <div th:text="${#temporals.format(question.modifyDate, 'yyyy.MM.dd HH:mm')}"></div>
+                                <div>수정됨</div>
+                            </div>
+                        </div>
+                        <div class="date" th:text="${#temporals.format(question.createDate, 'yyyy.MM.dd HH:mm')}"></div>
+                        <!--                        마크다운 추가-->
+                        <div class="card-text" th:utext="${@commonUtil.markdown(question.content)}"></div>
+                    </div>
+                </div>
+                <div class="btn-option">
+                    <a th:href="@{|/question/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary rounded-pill"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                       th:text="수정"></a>
+                    <a href="javascript:void(0);" th:data-uri="@{|/question/delete/${question.id}|}"
+                       class="delete btn btn-sm btn-outline-secondary rounded-pill" sec:authorize="isAuthenticated()"
+                       th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                       th:text="삭제"></a>
+                </div>
+            </div>
+            <div class="answer-box">
+                <!--답변의 갯수를 의미-->
+                <h5 class="title-text2" th:text="|${#lists.size(question.answerList)}개의 댓글|"></h5>
+                <!-- 답변 반복 시작 -->
+                <div class="a-card" th:each="answer : ${question.answerList}">
+                    <a th:id="|answer_${answer.id}|"></a>
+                    <div class="a-card-body pt-0">
+                        <div class="author">
+                            <div th:if="${answer.author != null}" th:text="${answer.author.username}"></div>
+                        </div>
+                        <div class="card-text" th:utext="${@commonUtil.markdown(answer.content)}"></div>
+                        <div class="d-flex justify-content-start">
+                            <div class="date">
+                                <div th:if="${answer.modifyDate != null}">
+                                    <!--수정 일시 추가-->
+                                    <div class="modify-text">
+                                        <div th:text="${#temporals.format(answer.modifyDate, 'yyyy.MM.dd HH:mm')}"></div>
+                                        <div>수정됨</div>
+                                    </div>
+                                </div>
+                                <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                            </div>
+                            <div class="btn-option">
+                                <a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary rounded-pill"
+                                   sec:authorize="isAuthenticated()"
+                                   th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                                   th:text="수정"></a>
+                                <a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}"
+                                   class="delete btn btn-sm btn-outline-secondary rounded-pill" sec:authorize="isAuthenticated()"
+                                   th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
+                                   th:text="삭제"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 답변 반복 끝  -->
+            </div>
+        </div>
+        <!-- 답변 작성 -->
+        <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3 answer-form">
+            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+            <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}"
+                      class="form-control" rows="5" placeholder="  로그인이 필요합니다."></textarea>
+            <textarea sec:authorize="isAuthenticated()" rows="5" th:field="*{content}"
+                      class="form-control" placeholder="  댓글을 남겨보세요."></textarea>
+            <input type="submit" value="댓글등록" class="btn btn-primary my-2 answer-button">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap.min.js}"></script>
+<script>
+    const delete_elements = document.getElementsByClassName("delete");
+    Array.from(delete_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+</script>
+</body>
+</html>

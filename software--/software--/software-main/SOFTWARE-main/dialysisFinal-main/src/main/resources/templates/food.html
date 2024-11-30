@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${product.name}">상품 이름</title>
+    <link rel="stylesheet" href="/food.css">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <a th:href="@{/products}">
+                <img src="/images/back-icon.png" alt="뒤로가기" class="back-icon">
+            </a>
+            <h1 th:text="${product.name}">상품 이름</h1>
+            <img src="/images/cart.png" class="lounge-logo2">
+        </div>
+        <div class="diet-recommendation-box">
+            <img src="/images/dietdate-icon.png" alt="일일 식단 아이콘" class="dietdate-icon">
+            <div class="diet-date">새벽배송</div>
+            <div class="food-info">
+                <img th:src="@{${product.imageUrl}}" class="food-img">
+                <p class="food-info-text1" th:text="${product.name}"></p>
+                <p class="food-info-text2" th:text="${product.description}"></p>
+                <p class="food-info-text1" th:text="${product.price} + '원'"></p>
+            </div>
+
+            <button class="banner2">
+                <a th:href="@{/order/create(productId=${product.id})}" class="banner-text2">구매하기</a>
+            </button>
+
+        </div>
+    </div>
+</body>
+</html>

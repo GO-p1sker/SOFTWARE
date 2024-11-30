@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    database: mysql
+  profiles:
+    active:
+      - test
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+
+chatbot:
+  api:
+    url: https://martin-pleased-preferably.ngrok-free.app/api/chat  # 불필요한 역슬래시 제거

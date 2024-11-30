@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티</title>
+    <link rel="stylesheet" href="/community-signup.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <div class="left-icons">
+                <a th:href="@{/main}">
+                    <img src="/images/back-icon.png" alt="뒤로가기" class="back-icon">
+                </a>
+            </div>
+<!--            <img src="/images/lounge-logo2.png" alt="투석라운지 로고" class="lounge-logo2">-->
+            <h1>로그인</h1>
+            <div class="right-space"></div>
+        </div>
+        <div class="content">
+            <form th:action="@{/user/login}" method="post">
+                <div th:if="${param.error}">
+                    <div class="m-3 alert alert-danger">
+                        ID 또는 비밀번호를 확인해 주세요.
+                    </div>
+                </div>
+                <div class="login-font">
+                    <div class="m-3 mt-5">
+                        <label for="username" class="form-label text-info">사용자 이름</label>
+                        <input type="text" name="username" id="username" class="form-control"
+                               style="background-color: #F4F4F4"
+                               placeholder="사용자 이름을 입력하세요.">
+                    </div>
+                    <div class="m-3">
+                        <label for="password" class="form-label text-info">비밀번호</label>
+                        <input type="password" name="password" id="password" class="form-control"
+                               style="background-color: #F4F4F4"
+                               placeholder="비밀번호를 입력하세요.">
+                    </div>
+                </div>
+                <div class="d-grid gap-2 m-3">
+                <button type="submit" class="btn btn-primary py-2 mt-2">로그인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/bootstrap.min.js}"></script>
+<script>
+    //요소가 포커스 되면 이벤트 발생
+    document.getElementById("username").addEventListener("focus", () => {
+        document.getElementById("username").style.backgroundColor = "#E6F7FF";
+    });
+
+    document.getElementById("password").addEventListener("focus", () => {
+        document.getElementById("password").style.backgroundColor = "#E6F7FF";
+    });
+
+    // 요소가 블러 되면 이벤트 발생
+    document.getElementById("username").addEventListener("blur", () => {
+        document.getElementById("username").style.backgroundColor = "#F4F4F4";
+    });
+
+    document.getElementById("password").addEventListener("blur", () => {
+        document.getElementById("password").style.backgroundColor = "#F4F4F4";
+    });
+</script>
+</body>
+</html>
