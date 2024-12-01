@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 - 상품 관리</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            background: #EDF2F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .background {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #EDF2F5;
+        }
+
+        .mobile-container {
+            width: 462px;
+            max-width: 462px;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 100vh;
+            padding-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        .main-banner {
+            padding: 20px;
+            background: #f9f9f9;
+            text-align: left;
+            flex-shrink: 0;
+            margin-top: 0px;
+        }
+
+        .main-banner h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button.banner, a.banner {
+            flex: 1;
+            text-align: center;
+            height: 50px;
+            background-color: #FFE8C6;
+            color: #F18657;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            line-height: 50px;
+        }
+
+        button.banner:hover, a.banner:hover {
+            background-color: #FFD399;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1rem;
+            text-align: left;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #F18657;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            width: 80px; /* Ensures same size for all buttons */
+            text-decoration: none; /* Removes underline for links */
+        }
+
+        .edit-btn {
+            background-color: #007bff;
+            color: #fff;
+            margin-bottom: 5px; /* Vertical spacing */
+        }
+
+        .edit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .delete-btn:hover {
+            background-color: #b52a37;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: flex-start;
+        }
+
+        img {
+            max-width: 50px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        @media screen and (max-width: 462px) {
+            .mobile-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="main-banner">
+            <h1>상품 관리</h1>
+        </div>
+        <div class="button-container">
+            <a class="banner" th:href="@{/admin/products/add}">상품 추가</a>
+            <a class="banner" onclick="location.href='/main'">메인으로 돌아가기</a>
+        </div>
+
+        <div id="admin-section">
+            <h2>상품 목록</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>이름</th>
+                    <th>가격</th>
+                    <th>설명</th>
+                    <th>이미지</th>
+                    <th>액션</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.description}"></td>
+                    <td><img th:src="${product.imageUrl}" alt="Product Image"></td>
+                    <td>
+                        <div class="action-buttons">
+                            <a class="btn edit-btn" th:href="@{/admin/products/{id}/edit(id=${product.id})}">수정</a>
+                            <form th:action="@{/admin/products/{id}/delete(id=${product.id})}" method="post">
+                                <button type="submit" class="btn delete-btn">삭제</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

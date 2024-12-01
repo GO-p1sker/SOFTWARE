@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문서</title>
+    <link rel="stylesheet" href="/food.css">
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="top-bar">
+            <a th:href="@{/products}">
+                <img src="/images/back-icon.png" alt="뒤로가기" class="back-icon">
+            </a>
+            <h1>주문서</h1>
+            <img src="/images/cart.png" class="lounge-logo2">
+        </div>
+        <div class="diet-recommendation-box">
+            <form th:action="@{/order/submit}" method="post">
+                <!-- 상품 ID 전달 -->
+                <input type="hidden" name="productId" th:value="${product.id}">
+
+                <!-- 상품 정보 -->
+                <div class="food-order">
+                    <p class="food-order-text1">주문상품</p>
+                    <p class="food-order-text2" th:text="${product.name}"></p><br>
+
+                    <!-- 사용자 정보 -->
+                    <p class="food-order-text1">주문자 정보</p>
+                    <p class="food-order-text2">
+                        <span th:text="${user.username}"></span><br>
+                        <span th:text="${user.customerPhone}"></span><br>
+                        <span th:text="${user.customerAddress}"></span>
+                    </p><br>
+
+                    <!-- 결제 수단 -->
+                    <p class="food-order-text1">결제수단</p>
+                    <div class="ingredient-boxes">
+                        <label>
+                            <input type="radio" name="paymentMethod" value="CREDIT_CARD" required> 신용카드
+                        </label>
+                        <label>
+                            <input type="radio" name="paymentMethod" value="EASY_PAYMENT"> 간편 결제
+                        </label>
+                        <label>
+                            <input type="radio" name="paymentMethod" value="MOBILE_PAYMENT"> 휴대폰 결제
+                        </label>
+                    </div><br>
+
+                    <!-- 결제 금액 -->
+                    <p class="food-order-text1">결제금액</p>
+                    <p class="food-order-text1" th:text="${product.price} + '원'"></p>
+                </div>
+                <button type="submit" class="banner2">
+                    <span class="banner-text2">결제하기</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

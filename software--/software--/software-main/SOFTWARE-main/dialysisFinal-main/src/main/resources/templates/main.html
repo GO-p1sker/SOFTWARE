@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>식단 관리 온라인 쇼핑몰</title>
+    <link rel="stylesheet" href="/mainhome.css">
+    <script>
+        async function checkAuthStatus() {
+            const response = await fetch('/auth/status');
+            const { isAuthenticated, isAdmin } = await response.json();
+
+            const loginSection = document.getElementById('login-section');
+            const logoutSection = document.getElementById('logout-section');
+            const adminSection = document.getElementById('admin-section');
+
+            if (isAuthenticated) {
+                loginSection.style.display = 'none';
+                logoutSection.style.display = 'block';
+
+                if (isAdmin) {
+                    adminSection.style.display = 'block';
+                } else {
+                    adminSection.style.display = 'none';
+                }
+            } else {
+                loginSection.style.display = 'block';
+                logoutSection.style.display = 'none';
+                adminSection.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', checkAuthStatus);
+    </script>
+    <style>
+        .iframe-container {
+            width: 100%;
+            height: 400px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="mobile-container">
+        <div class="main-banner">
+            <button class="banner" onclick="location.href='/products'">
+                <img src="/images/dietedu-icon.png" alt="교육자료 아이콘" class="dietedu-icon">
+                <span class="banner-text">건강 레시피에 필요한 신선한 재료 구매 바로가기!</span>
+            </button>
+            <button class="find-center-btn " onclick="window.location.href='/go-to-url'">
+                <img src="/images/AI.png" class="search-icon">맞춤형 식단 추천 AI
+            </button>
+        </div>
+        <div class="services">
+            <h2>식단 관리 온라인 쇼핑몰</h2>
+
+            <!-- Section for login/signup -->
+            <div id="login-section">
+                <div class="service-cards">
+                    <button class="service-card login-btn" onclick="location.href='/user/login'">
+                        <div class="service-card-content">
+                            <h3>로그인</h3>
+                        </div>
+                        <img src="/images/login.png">
+                    </button>
+                    <button class="service-card signup-btn" onclick="window.location.href='/user/signup'">
+                        <div class="service-card-content">
+                            <h3>회원가입</h3>
+                        </div>
+                        <img src="/images/signup.png">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section for logout -->
+            <div id="logout-section" style="display: none;">
+                <button class="service-card logout-btn" onclick="location.href='/user/logout'">
+                    <div class="service-card-content">
+                        <h3>로그아웃</h3>
+                    </div>
+                    <img src="/images/login.png">
+                </button>
+            </div>
+
+            <!-- Section for admin -->
+            <div id="admin-section" style="display: none;">
+                <h2>관리자 메뉴</h2>
+                <div class="service-cards">
+                    <button class="service-card admin-products-btn" onclick="location.href='/admin/products'">
+                        <div class="service-card-content">
+                            <h3>상품 관리</h3>
+                        </div>
+                        <img src="/images/login.png">
+                    </button>
+                    <button class="service-card admin-orders-btn" onclick="location.href='/admin/orders'">
+                        <div class="service-card-content">
+                            <h3>주문 관리</h3>
+                        </div>
+                        <img src="/images/login.png">
+                    </button>
+                    <button class="service-card admin-users-btn" onclick="location.href='/admin/users'">
+                        <div class="service-card-content">
+                            <h3>사용자 관리</h3>
+                        </div>
+                        <img src="/images/login.png">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Updated AI section -->
+            <h2>맞춤형 식단 추천 AI 사용법</h2>
+            <div class="iframe-container">
+                <iframe src="https://martin-pleased-preferably.ngrok-free.app" title="Ngrok Preview"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
